@@ -93,6 +93,7 @@
     <ItemGroup>
         <Compile Include="API\Components\Touching.cs" />
         <Compile Include="API\EventArgs\EnteringNpcEventArgs.cs" />
+        <Compile Include="API\EventArgs\SpawningNpcEventArgs.cs" />
         <Compile Include="API\Extensions.cs" />
         <Compile Include="API\Handlers\Npc.cs" />
         <Compile Include="API\Npc.cs" />

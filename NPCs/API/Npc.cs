@@ -3,6 +3,7 @@ using System.Linq;
 using Exiled.API.Features;
 using Mirror;
 using NPCs.API.Components;
+using NPCs.API.EventArgs;
 using RemoteAdmin;
 using UnityEngine;
 
@@ -12,6 +13,12 @@ namespace NPCs.API
     {
         public static readonly HashSet<Npc> SpawnedNpc = new();
 
+        public RoleType RoleType
+        {
+            get => ReferenceHub.characterClassManager.CurClass;
+            set => ReferenceHub.characterClassManager.CurClass = value;
+        }
+        
         private Npc(ReferenceHub referenceHub, string nickname, RoleType role, Vector3 position, Vector3 scale, Vector2 rotation) : base(referenceHub)
         {
             ReferenceHub.queryProcessor._ipAddress = Server.IpAddress;
@@ -24,10 +31,16 @@ namespace NPCs.API
             Scale = scale;
             Position = position;
             Rotation = rotation;
-            ReferenceHub.characterClassManager.CurClass = role;
+            RoleType = role;
 
             ReferenceHub.playerMovementSync.NetworkGrounded = true;
             ReferenceHub.characterClassManager.GodMode = true;
+
+            SpawningNpcEventArgs ev = new SpawningNpcEventArgs(this);
+            Handlers.Npc.OnSpawningNpc(ev);
+
+            if (!ev.IsAllowed)
+                return;
 
             NetworkServer.Spawn(GameObject);
             GameObject.AddComponent<Touching>();

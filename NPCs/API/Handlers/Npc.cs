@@ -8,6 +8,10 @@ namespace NPCs.API.Handlers
     {
         public static event Events.CustomEventHandler<EnteringNpcEventArgs> EnteringNpc;
 
-        public static void OnEnteringNpc(EnteringNpcEventArgs ev) => EnteringNpc.InvokeSafely(ev);
+        public static event Events.CustomEventHandler<SpawningNpcEventArgs> SpawningNpc; 
+
+        public static void OnEnteringNpc(EnteringNpcEventArgs ev) => EnteringNpc?.InvokeSafely(ev);
+
+        public static void OnSpawningNpc(SpawningNpcEventArgs ev) => SpawningNpc?.InvokeSafely(ev);
     }
 }
