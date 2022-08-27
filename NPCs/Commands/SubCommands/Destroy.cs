@@ -1,37 +1,36 @@
 ﻿using System;
-using System.Linq;
 using CommandSystem;
 using Exiled.API.Features;
 using Exiled.Permissions.Extensions;
-using UnityEngine;
+using NPCs.API;
 
 namespace NPCs.Commands.SubCommands
 {
-    public class Spawn : ICommand
+    public class Destroy : ICommand
     {
-        public string Command => "spawn";
+        public string Command => "destroy";
         public string[] Aliases { get; } = Array.Empty<string>();
-        public string Description => "Spawns a NPC";
+        public string Description => "Destroys a NPC which you look at";
 
         public bool Execute(ArraySegment<string> arguments, ICommandSender sender, out string response)
         {
             Player player = Player.Get(sender);
-            
+
             if (!player.CheckPermission($"npc.{Command}"))
             {
                 response = $"You do not have permission to use this command! Required permission: npc.{Command}";
                 return false;
             }
 
-            if (arguments.Count != 2 || !Enum.TryParse(arguments.ElementAt(1), true, out RoleType roleType))
+            if (!player.TryGetNpcOnSight(12f, out Npc npc))
             {
-                response = "Usage: npc spawn [nickname] [RoleType]";
+                response = "You need to look at NPC!";
                 return false;
             }
+            
+            npc.Destroy();
 
-            _ = API.Npc.Spawn(arguments.ElementAt(0), roleType, player.Position, Vector3.one, Vector2.up);
-
-            response = "NPC has been successfully spawned!";
+            response = "NPC has been successfully destroyed.";
             return true;
         }
     }

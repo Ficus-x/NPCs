@@ -14,6 +14,8 @@ namespace NPCs.Commands
         {
             RegisterCommand(new Spawn());
             RegisterCommand(new LookAtMe());
+            RegisterCommand(new List());
+            RegisterCommand(new Destroy());
         }
 
         public override string Command => "Npc";
@@ -23,6 +25,7 @@ namespace NPCs.Commands
         protected override bool ExecuteParent(ArraySegment<string> arguments, ICommandSender sender, out string response)
         {
             response = "\nPlease enter a valid subcommand:";
+
             foreach (ICommand command in AllCommands)
             {
                 if (sender.CheckPermission($"npc.{command.Command}"))
