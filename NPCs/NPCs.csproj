@@ -98,6 +98,7 @@
         <Compile Include="API\Handlers\Npc.cs" />
         <Compile Include="API\Npc.cs" />
         <Compile Include="Commands\NpcParentCommand.cs" />
+        <Compile Include="Commands\SubCommands\AddItem.cs" />
         <Compile Include="Commands\SubCommands\List.cs" />
         <Compile Include="Commands\SubCommands\LookAtMe.cs" />
         <Compile Include="Commands\SubCommands\Destroy.cs" />

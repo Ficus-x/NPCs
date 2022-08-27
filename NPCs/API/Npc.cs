@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Exiled.API.Features;
+using Exiled.API.Features.Items;
 using Mirror;
 using NPCs.API.Components;
 using NPCs.API.EventArgs;
@@ -19,7 +20,7 @@ namespace NPCs.API
             set => ReferenceHub.characterClassManager.CurClass = value;
         }
         
-        private Npc(ReferenceHub referenceHub, string nickname, RoleType role, Vector3 position, Vector3 scale, Vector2 rotation) : base(referenceHub)
+        private Npc(ReferenceHub referenceHub, string nickname, RoleType role, Vector3 position, Vector3 scale, Vector2 rotation, Item item = null) : base(referenceHub)
         {
             ReferenceHub.queryProcessor._ipAddress = Server.IpAddress;
             ReferenceHub.queryProcessor.NetworkPlayerId = QueryProcessor._idIterator++;
@@ -36,6 +37,8 @@ namespace NPCs.API
             ReferenceHub.playerMovementSync.NetworkGrounded = true;
             ReferenceHub.characterClassManager.GodMode = true;
 
+            CurrentItem = item;
+            
             SpawningNpcEventArgs ev = new SpawningNpcEventArgs(this);
             Handlers.Npc.OnSpawningNpc(ev);
 
