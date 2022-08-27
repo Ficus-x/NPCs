@@ -1,5 +1,5 @@
 # NPCs
-NPCs is an EXILED SCP:SL plugin allows you to spawn NPCs.
+NPCs is an EXILED SCP:SL plugin which allows you to spawn NPCs.
 
 [![Github All Releases](https://img.shields.io/github/downloads/Ficus-x/NPCs/total.svg)]()
 
@@ -14,7 +14,7 @@ lookatme
 additem
 ```
 
-**Permissons:**
+**Permissions:**
 ```DRS:
 npc.spawn
 npc.modify
