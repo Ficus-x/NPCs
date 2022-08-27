@@ -99,7 +99,6 @@
         <Compile Include="API\Npc.cs" />
         <Compile Include="Commands\NpcParentCommand.cs" />
         <Compile Include="Commands\SubCommands\LookAtMe.cs" />
-        <Compile Include="Commands\SubCommands\Modify.cs" />
         <Compile Include="Commands\SubCommands\Spawn.cs" />
         <Compile Include="Plugin.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />
