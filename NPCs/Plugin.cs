@@ -6,7 +6,7 @@ namespace NPCs
 {
     public sealed class Plugin : Plugin<Config>
     {
-        public override string Author => "Ficus-x";
+        public override string Author => "Ficus-x (original idea by gamehunt)";
 
         public override string Name => "NPCs";
 
