@@ -29,7 +29,8 @@ namespace NPCs.Commands.SubCommands
                 return false;
             }
 
-            npc.LookAtPlayer(player);
+            npc.LookAtPosition(player.Position);
+            npc.Update();
 
             response = "NPC has successfully looked at you!";
             return true;
