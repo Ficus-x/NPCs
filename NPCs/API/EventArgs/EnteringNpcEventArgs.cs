@@ -2,7 +2,7 @@
 
 namespace NPCs.API.EventArgs
 {
-    public sealed class EnteringNpcEventArgs : System.EventArgs
+    public class EnteringNpcEventArgs : System.EventArgs
     {
         public EnteringNpcEventArgs(Player player, Npc npc)
         {
