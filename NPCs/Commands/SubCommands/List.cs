@@ -23,7 +23,19 @@ namespace NPCs.Commands.SubCommands
                 return false;
             }
 
-            response = Npc.SpawnedNpc.Aggregate("NPC list:", (current, npc) => current + $"{npc.Nickname} - Role: {npc.RoleType}, Position: {npc.Position}");
+            response = "NPC list:";
+
+            if (!Npc.SpawnedNpc.Any())
+            {
+                response += "\nNo NPCs are spawned";
+                return true;
+            }
+            
+            foreach (Npc npc in Npc.SpawnedNpc)
+            {
+                response += $"\n{npc.Nickname} - Role: {npc.RoleType}, Position: {npc.Position}";
+            }
+
             return true;
         }
     }
