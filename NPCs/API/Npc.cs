@@ -35,7 +35,7 @@ namespace NPCs.API
             RoleType = role;
 
             ReferenceHub.playerMovementSync.NetworkGrounded = true;
-            ReferenceHub.characterClassManager.GodMode = true;
+            IsGodModeEnabled = true;
 
             CurrentItem = item;
             
