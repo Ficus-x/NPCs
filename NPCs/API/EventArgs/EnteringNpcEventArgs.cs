@@ -1,4 +1,5 @@
 ﻿using Exiled.API.Features;
+using NPCs.API.Features;
 
 namespace NPCs.API.EventArgs
 {

@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using Exiled.API.Features;
 using NPCs.API.EventArgs;
+using NPCs.API.Features;
 using UnityEngine;
 
 namespace NPCs.API.Components

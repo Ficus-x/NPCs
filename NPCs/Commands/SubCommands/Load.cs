@@ -1,17 +1,20 @@
 ﻿using System;
+using System.Linq;
 using CommandSystem;
 using Exiled.API.Features;
+using Exiled.API.Features.Items;
 using Exiled.Permissions.Extensions;
 using NPCs.API;
 using NPCs.API.Features;
+using Map = NPCs.API.Features.Objects.Map;
 
 namespace NPCs.Commands.SubCommands
 {
-    public class Destroy : ICommand
+    public class Load : ICommand
     {
-        public string Command => "destroy";
+        public string Command => "save";
         public string[] Aliases { get; } = Array.Empty<string>();
-        public string Description => "Destroys a NPC which you look at";
+        public string Description => "Save the map with NPCs";
 
         public bool Execute(ArraySegment<string> arguments, ICommandSender sender, out string response)
         {
@@ -23,15 +26,23 @@ namespace NPCs.Commands.SubCommands
                 return false;
             }
 
-            if (!player.TryGetNpcOnSight(12f, out Npc npc))
+            if (arguments.Count != 1)
             {
-                response = "You need to look at NPC!";
+                response = "Usage: npc load [Map name]";
                 return false;
             }
-            
-            npc.Destroy();
 
-            response = "NPC has been successfully destroyed.";
+            Map map = MapUtils.GetMapByName(arguments.ElementAt(0));
+
+            if (map is null)
+            {
+                response = "The map with this name does not exist";
+                return false;
+            }
+
+            MapUtils.LoadMap(map);
+
+            response = "Map has been successfully loaded!";
             return true;
         }
     }

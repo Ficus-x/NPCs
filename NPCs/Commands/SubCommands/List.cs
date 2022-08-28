@@ -4,6 +4,7 @@ using CommandSystem;
 using Exiled.API.Features;
 using Exiled.Permissions.Extensions;
 using NPCs.API;
+using NPCs.API.Features;
 
 namespace NPCs.Commands.SubCommands
 {

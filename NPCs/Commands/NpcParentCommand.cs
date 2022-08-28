@@ -17,6 +17,8 @@ namespace NPCs.Commands
             RegisterCommand(new List());
             RegisterCommand(new Destroy());
             RegisterCommand(new AddItem());
+            RegisterCommand(new Save());
+            RegisterCommand(new Load());
         }
 
         public override string Command => "Npc";
