@@ -107,6 +107,7 @@
         <Compile Include="Commands\NpcParentCommand.cs" />
         <Compile Include="Commands\SubCommands\AddItem.cs" />
         <Compile Include="Commands\SubCommands\List.cs" />
+        <Compile Include="Commands\SubCommands\Load.cs" />
         <Compile Include="Commands\SubCommands\LookAtMe.cs" />
         <Compile Include="Commands\SubCommands\Destroy.cs" />
         <Compile Include="Commands\SubCommands\Save.cs" />
