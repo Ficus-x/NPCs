@@ -1,4 +1,6 @@
-﻿namespace NPCs.API.EventArgs
+﻿using NPCs.API.Features;
+
+namespace NPCs.API.EventArgs
 {
     public class SpawningNpcEventArgs : System.EventArgs
     {

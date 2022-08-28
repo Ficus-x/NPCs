@@ -3,7 +3,7 @@ using CommandSystem;
 using Exiled.API.Features;
 using Exiled.Permissions.Extensions;
 using NPCs.API;
-using Npc = NPCs.API.Npc;
+using Npc = NPCs.API.Features.Npc;
 
 namespace NPCs.Commands.SubCommands
 {

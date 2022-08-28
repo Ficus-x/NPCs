@@ -3,6 +3,7 @@ using System.Linq;
 using CommandSystem;
 using Exiled.API.Features;
 using Exiled.Permissions.Extensions;
+using NPCs.API.Features;
 using UnityEngine;
 
 namespace NPCs.Commands.SubCommands
@@ -29,7 +30,7 @@ namespace NPCs.Commands.SubCommands
                 return false;
             }
 
-            _ = API.Npc.Spawn(arguments.ElementAt(0), roleType, player.Position, Vector3.one, Vector2.up);
+            _ = Npc.Spawn(arguments.ElementAt(0), roleType, player.CurrentRoom.Type, MapUtils.GetRelativePosition(player.Position, player.CurrentRoom.Type), Vector3.one, Vector2.up);
 
             response = "NPC has been successfully spawned!";
             return true;

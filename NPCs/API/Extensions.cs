@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using Exiled.API.Features;
+using NPCs.API.Features;
 using UnityEngine;
 
 namespace NPCs.API
@@ -17,5 +18,7 @@ namespace NPCs.API
 
             return npc != null;
         }
+
+        public static bool IsNpc(this Player player) => Npc.SpawnedNpc.Contains(player);
     }
 }

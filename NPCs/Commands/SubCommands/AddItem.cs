@@ -5,6 +5,7 @@ using Exiled.API.Features;
 using Exiled.API.Features.Items;
 using Exiled.Permissions.Extensions;
 using NPCs.API;
+using NPCs.API.Features;
 
 namespace NPCs.Commands.SubCommands
 {
