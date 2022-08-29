@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Exiled.API.Enums;
 using Exiled.API.Features;
 using Exiled.API.Features.Items;
@@ -9,6 +10,8 @@ using NPCs.API.Features.Objects;
 using RemoteAdmin;
 using UnityEngine;
 using Map = NPCs.API.Features.Objects.Map;
+using Object = UnityEngine.Object;
+using Random = UnityEngine.Random;
 
 namespace NPCs.API.Features
 {
@@ -18,12 +21,20 @@ namespace NPCs.API.Features
 
         public static readonly HashSet<Map> LoadedMaps = new();
 
-        public RoleType RoleType
+        public new RoleType Role
         {
             get => ReferenceHub.characterClassManager.CurClass;
             set => ReferenceHub.characterClassManager.CurClass = value;
         }
+
+        public new Vector3 Scale
+        {
+            get => ReferenceHub.transform.localScale;
+            set => ReferenceHub.transform.localScale = value;
+        }
         
+        public RoomType Room { get; set; }
+
         private Npc(ReferenceHub referenceHub, string nickname, RoleType role, RoomType room, Vector3 position, Vector3 scale, Vector2 rotation, Item item = null) : base(referenceHub)
         {
             ReferenceHub.queryProcessor._ipAddress = "127.0.0.WAN";
@@ -36,11 +47,12 @@ namespace NPCs.API.Features
             ReferenceHub.inventory.Start();
             ReferenceHub.serverRoles.Start();
 
-            ReferenceHub.nicknameSync.MyNick = nickname; 
-            ReferenceHub.transform.localScale = scale;
-            Position = MapUtils.GetRelativePosition(position, room);
+            ReferenceHub.nicknameSync.MyNick = nickname;
+            Scale = scale;
+            Position = position;
             Rotation = rotation;
-            RoleType = role;
+            Room = room;
+            Role = role;
 
             ReferenceHub.characterClassManager.IsVerified = true;
 
@@ -59,13 +71,12 @@ namespace NPCs.API.Features
             GameObject.AddComponent<Touching>();
 
             SpawnedNpc.Add(this);
-            Dictionary.Add(GameObject, this);
         }
         
         public static Npc Spawn(string nickname, RoleType role, RoomType room, Vector3 position, Vector3 scale, Vector2 rotation)
             => new(ReferenceHub.GetHub(Object.Instantiate(NetworkManager.singleton.playerPrefab)), nickname, role, room, position, scale, rotation);
 
-        public static Npc Spawn(Npc npc) => Spawn(npc.Nickname, npc.RoleType, npc.CurrentRoom.Type, npc.Position, npc.Scale, npc.Rotation);
+        public static Npc Spawn(Npc npc) => Spawn(npc.Nickname, npc.Role, npc.Room, npc.Position, npc.Scale, npc.Rotation);
 
         public static Npc Spawn(SerializableNpc npc) => Spawn(npc.Nickname, npc.Role, npc.Room, npc.Position, npc.Scale, npc.Rotation);
 
@@ -78,14 +89,12 @@ namespace NPCs.API.Features
         public void Update()
         {
             Destroy();
-            Spawn(Nickname, ReferenceHub.characterClassManager.CurClass, CurrentRoom.Type, Position, Scale, Rotation);
+            Spawn(Nickname, Role, Room, Position, Scale, Rotation);
         }
         
         public void Destroy()
         {
             SpawnedNpc.Remove(this);
-            Dictionary.Remove(GameObject);
-            
             Object.Destroy(GameObject);
         }
     }

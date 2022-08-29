@@ -30,7 +30,7 @@ namespace NPCs.Commands.SubCommands
                 return false;
             }
 
-            _ = Npc.Spawn(arguments.ElementAt(0), roleType, player.CurrentRoom.Type, MapUtils.GetRelativePosition(player.Position, player.CurrentRoom.Type), Vector3.one, Vector2.up);
+            _ = Npc.Spawn(arguments.ElementAt(0), roleType, player.CurrentRoom.Type, player.Position, Vector3.one, Vector2.up);
 
             response = "NPC has been successfully spawned!";
             return true;

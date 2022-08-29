@@ -34,7 +34,7 @@ namespace NPCs.Commands.SubCommands
             
             foreach (Npc npc in Npc.SpawnedNpc)
             {
-                response += $"\n{npc.Nickname} - Role: {npc.RoleType}, Position: {npc.Position}";
+                response += $"\n{npc.Nickname} - Role: {npc.Role}, Position: {npc.Position}";
             }
 
             return true;

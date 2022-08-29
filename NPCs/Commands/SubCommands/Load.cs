@@ -12,9 +12,9 @@ namespace NPCs.Commands.SubCommands
 {
     public class Load : ICommand
     {
-        public string Command => "save";
+        public string Command => "load";
         public string[] Aliases { get; } = Array.Empty<string>();
-        public string Description => "Save the map with NPCs";
+        public string Description => "Loads the map with NPCs";
 
         public bool Execute(ArraySegment<string> arguments, ICommandSender sender, out string response)
         {
