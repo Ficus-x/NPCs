@@ -5,6 +5,7 @@ using HarmonyLib;
 using NPCs.API.Handlers.Internal;
 using NPCs.Resources;
 using Map = Exiled.Events.Handlers.Map;
+using Player = Exiled.Events.Handlers.Player;
 using Server = Exiled.Events.Handlers.Server;
 using Warhead = Exiled.Events.Handlers.Warhead;
 
@@ -57,6 +58,7 @@ namespace NPCs
             Map.Generated += _handlers.OnGenerated;
             Server.RoundStarted += _handlers.OnRoundStarted;
             Warhead.Detonated += _handlers.OnDetonated;
+            Player.ItemAdded += _handlers.OnItemAdded;
         }
 
         private void UnregisterEvents()
@@ -64,7 +66,8 @@ namespace NPCs
             Map.Generated -= _handlers.OnGenerated;
             Server.RoundStarted -= _handlers.OnRoundStarted;
             Warhead.Detonated -= _handlers.OnDetonated;
-
+            Player.ItemAdded -= _handlers.OnItemAdded;
+            
             _handlers = null;
         }
 

@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Exiled.API.Enums;
+using Exiled.API.Extensions;
 using Exiled.API.Features;
 using Exiled.API.Features.Items;
 using Mirror;
@@ -71,6 +73,7 @@ namespace NPCs.API.Features
             GameObject.AddComponent<Touching>();
 
             SpawnedNpc.Add(this);
+            Dictionary.Add(GameObject, this);
         }
         
         public static Npc Spawn(string nickname, RoleType role, RoomType room, Vector3 position, Vector3 scale, Vector2 rotation)
@@ -95,6 +98,8 @@ namespace NPCs.API.Features
         public void Destroy()
         {
             SpawnedNpc.Remove(this);
+            Dictionary.Remove(GameObject);
+
             Object.Destroy(GameObject);
         }
     }

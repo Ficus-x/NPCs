@@ -112,6 +112,7 @@
         <Compile Include="Commands\SubCommands\Destroy.cs" />
         <Compile Include="Commands\SubCommands\Save.cs" />
         <Compile Include="Commands\SubCommands\Spawn.cs" />
+        <Compile Include="Patches\Online.cs" />
         <Compile Include="Patches\OverridePosition.cs" />
         <Compile Include="Patches\Scale.cs" />
         <Compile Include="Plugin.cs" />
