@@ -19,7 +19,7 @@ namespace NPCs
 
         public override string Prefix => Name;
 
-        public override Version Version { get; } = new(2, 0, 0);
+        public override Version Version { get; } = new(2, 1, 0);
 
         public static Plugin Instance { get; private set; }
 
